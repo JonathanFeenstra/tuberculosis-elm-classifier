@@ -4,5 +4,5 @@ Classifies chest X-rays for tuberculosis using an Exreme Learning Machine.
 
 ## Authors
 
-- Jonathan Feenstra @JonathanFeenstra
-- Justin Huberts @komjum6
+- Jonathan Feenstra [@JonathanFeenstra](https://github.com/JonathanFeenstra)
+- Justin Huberts [@komjum6](https://github.com/komjum6)
