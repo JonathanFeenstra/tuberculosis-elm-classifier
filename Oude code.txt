@@ -37,3 +37,59 @@ cv2.imshow("After", img)
 cv2.waitKey(0)
 
 *****************************************************************************************************
+
+Remove other obstacles
+
+*****************************************************************************************************
+from PIL import Image
+import numpy as np
+import cv2
+from matplotlib import pyplot as plt
+
+img = Image.open('Data\\MontgomerySet\\CXR_png\\MCUCXR_0001_0.png')
+# bw = img.point(lambda x: 0 if x<128 else 255, '1')
+# imshow(bw)
+# plt.show()
+
+# Let numpy do the heavy lifting for converting pixels to pure black or white
+#bw = np.asarray(img)
+bw = np.array(img)
+
+bw.setflags(write=1)
+
+# Pixel range is 0...255, 256/2 = 128
+bw[bw < 128] = 0    # Black
+bw[bw >= 128] = 255 # White
+imfile = Image.fromarray(bw)
+
+#imfile.save('fil.png')
+
+plt.imshow(imfile)
+plt.show()
+
+import cv2
+from matplotlib import pyplot as plt
+
+img = cv2.imread('fil.png',0)
+edges = cv2.Canny(img,50,200)
+
+plt.subplot(121),plt.imshow(img,cmap = 'gray')
+plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+plt.subplot(122),plt.imshow(edges,cmap = 'gray')
+plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+
+plt.show()
+
+from skimage import feature, io
+ 
+im = io.imread('fil.png')
+edges = feature.canny(im)
+io.imshow(edges)
+io.show()
+
+
+ 
+im = cv2.imread('fil.png')
+edges = cv2.Canny(im,25,255,L2gradient=False)
+plt.imshow(edges,cmap='gray')
+plt.show()
